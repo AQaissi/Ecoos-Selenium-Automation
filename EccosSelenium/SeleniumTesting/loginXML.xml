@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">	
+
+<suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="true">
+
+
+ <parameter name="invUserName" value="aqaissi@asaltech.com" />
+<parameter name="invPassword" value="test1" />
+
+
+ <parameter name="username" value="admin@ecoos.co" />
+<parameter name="password" value="ecoos6" />
+
+ 
+  <test name="login">
+	 <classes>
+	   <class name="com.test.page.TestLogin">
+ <methods>
+
+ <include name="positiveLoginTestCase"/>
+ 
+      </methods>	
+      </class>
+       </classes>
+       </test>
+
+   
+ 
+</suite>

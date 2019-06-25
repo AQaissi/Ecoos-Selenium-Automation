@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">	
+
+<suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="true">
+ <parameter name="username" value="admin@ecoos.co" />
+<parameter name="password" value="ecoos6" />
+
+   <test name="Home">
+   <classes>
+   	<class name="com.test.page.TestHome">
+   		<methods>
+   		  <include name="selectSiteFromMenuTest"/> 
+   		</methods>
+   	
+   	
+   	</class>
+   
+   </classes>
+   
+   </test>
+   
+ 
+</suite>
