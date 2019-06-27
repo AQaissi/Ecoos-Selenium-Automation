@@ -6,10 +6,6 @@
  <parameter name="invUserName" value="aqaissi@asaltech.com" />
 <parameter name="invPassword" value="test1" />
 
-
- <parameter name="username" value="admin@ecoos.co" />
-<parameter name="password" value="ecoos6" />
-
  
   <test name="login">
 	 <classes>
@@ -17,6 +13,7 @@
  <methods>
 
  <include name="positiveLoginTestCase"/>
+ <include name="negativeLoginTestCase"/>
  
       </methods>	
       </class>
