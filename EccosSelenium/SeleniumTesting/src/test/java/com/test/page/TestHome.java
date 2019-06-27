@@ -20,7 +20,7 @@ public class TestHome extends BaseTest {
 	HomePage homePage;
 	public static final String  categoryName = "energy";
 	public static final String tabName = "review";
-	By adminProfile = By.xpath("//div/div/a[@ui-sref='setup.assets']");
+	 
 
 	
 	
@@ -30,23 +30,23 @@ public class TestHome extends BaseTest {
 		homePage.selectProtocolItem() ;
 		String actualOptionText = homePage.getSelectedProtocolText();
 		Assert.assertEquals(actualOptionText, HomePage.optionProtocol);
+		
 	} 
 	
 	@Test
 	public void selectSiteFromMenuTest() throws InterruptedException {
 		homePage  = new HomePage(driver);
-		Thread.sleep(1000);
+		 Thread.sleep(2000);
 		homePage.selectSiteFromDropDownList();
 		Assert.assertEquals(homePage.getElementText(HomePage.resultSite), HomePage.optionSite);
 	}
 	
 	@Test(dataProvider = "CategoriesProvider" , dataProviderClass = TabsAndCategoriesData.class)
 	public void selectCategoryTest(String categoryName) throws InterruptedException {
-		homePage  = new HomePage(driver);
-		homePage.waitForTime(homePage.getCetegoryPath(categoryName), 15);
+		homePage  = new HomePage(driver); 
 		homePage.selectCategory(categoryName) ;
-		homePage.waitForTime(homePage.getCetegoryPath(categoryName), 15);
-		assertThat(homePage.getCategoryText(categoryName) , IsEqualIgnoringCase.equalToIgnoringCase(categoryName));
+		  
+		assertThat(homePage.getCategoryText(categoryName), IsEqualIgnoringCase.equalToIgnoringCase(categoryName));
 	} 
 	
 	@Test(dataProvider="TabsProvider" , dataProviderClass=TabsAndCategoriesData.class)
@@ -62,8 +62,10 @@ public class TestHome extends BaseTest {
 	
 	@AfterMethod
 	public void navigateBackToHomePage() throws InterruptedException {
-		driver.get("http://213.6.2.241/dashboard/collect");
-		homePage.selectAllProtocols() ;
-		Thread.sleep(3000);
-	}
-}
+		homePage = new HomePage(driver);
+		driver.get("http://213.6.2.241/dashboard/collect"); 
+		homePage.waitTimeForClickableElement(HomePage.adminProfile,20); 
+		 Thread.sleep(1000);
+		  
+	} 
+} 

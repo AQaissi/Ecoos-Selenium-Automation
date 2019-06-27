@@ -43,8 +43,8 @@ public class BaseTest {
 		 }
 		 else {
 			 System.out.println("Error Browser Name");
-		 }
-	
+		 } 
+//	 open url
 	    driver.get(configfilereader.getPropertyFromFile("url"));
 //	    driver.manage().window().maximize() ;
 	    
@@ -58,11 +58,7 @@ public class BaseTest {
 		password = configfilereader.getPropertyFromFile("password");
 	    loginPage = new LoginPage(driver);
 	    loginPage.Login(username,password); 
-	    Thread.sleep(5000);
-//	    wait = new WebDriverWait(driver,10); 
-//	    By logout = By.xpath("//a/img[@src='/images/icons/support.png']");
-//	    wait.until(ExpectedConditions.visibilityOfElementLocated(logout));
-//	    
+	    Thread.sleep(5000);	    
 	    
 	}
 	

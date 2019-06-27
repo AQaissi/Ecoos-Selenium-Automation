@@ -76,15 +76,21 @@ public class BasePage {
 	  }
 	  
 	  
-		public By getDynamicPath(String xpath , String name) {
+		public By getDynamicPath(String xpath , String name) { 
 			 String locator = xpath + name + "']" ; 
 			 return By.xpath(locator);
-			
+			  
 		}
 		
-		public void waitForTime(By path , int timeout) {
+		public void waitTimeForVisibilityOfElement(By path , int timeout) {
 			wait = new WebDriverWait(driver, timeout);
 		     wait.until(ExpectedConditions.visibilityOfElementLocated(path));
+		
+	} 
+		
+		public  void waitTimeForClickableElement(By path , int timeout) {
+			wait = new WebDriverWait(driver, timeout);
+		     wait.until(ExpectedConditions.elementToBeClickable(path));
 		
 	}
 
