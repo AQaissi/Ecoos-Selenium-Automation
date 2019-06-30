@@ -1,14 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">	
 
 <suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="true">
-
    <test name="Home">
    <classes>
-   	<class name="com.test.page.TestHome">
+   	<class name="com.test.TestHome">
    		<methods>
    			<include name="selectProtocolFromDropDownListTest"/>
    		  <include name="selectSiteFromMenuTest"/>
    		  <include name="selectCategoryTest"/>
+   		 
    		</methods>
    	
    	</class>

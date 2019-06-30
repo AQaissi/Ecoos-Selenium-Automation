@@ -1,4 +1,4 @@
-package com.test.page;
+package com.test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import com.beust.jcommander.Parameter;
 
+import Constants.constant;
 import Pages.HomePage;
 import Pages.LoginPage;
 
@@ -21,28 +22,28 @@ import Pages.LoginPage;
 
 public class TestLogin extends BaseTest {
 
-//	@Test
+	@Test
 	@Parameters({"username","password"})
-	public void positiveLoginTestCase(String username,String password) throws InterruptedException {
+	public void validLoginTest(String username,String password) throws InterruptedException {
 	
 	    loginPage = new LoginPage(driver);
 	    loginPage.Login(username,password);
 	    By logout = By.xpath("//a/img[@src='/images/icons/support.png']");
-	    
+	    Assert.assertTrue(loginPage.isLogoutVisible());
 	    
 	}
 	
 	
 	@Test (dataProvider="LoginProvider")
-	public void negativeLoginTestCase(String invUserName , String invPassword) throws InterruptedException {
+	public void invalidLoginTest(String invUserName , String invPassword) throws InterruptedException {
 		
-		String expectedMessage = "Invalid Username or Password. Please Try Again!";
+		
 	    loginPage = new LoginPage(driver);
 		loginPage.Login(invUserName, invPassword);
 		
-		String errorMessage = loginPage.getElementText(LoginPage.errorMessage);
+		String errorMessage = loginPage.getElementText(constant.textField_errorMessage);
 		
-		Assert.assertEquals(errorMessage, expectedMessage);
+		Assert.assertEquals(errorMessage, constant.text_expectedMessage);
 	}
 	
 	  

@@ -12,7 +12,11 @@ public class ConfigFileReader {
 	private final String propertyFilePath = "./src/test/resources/Properties/Configuration.properities";
 	
 	
-	public ConfigFileReader() {
+	public static ConfigFileReader  configFileReader ; 
+	
+	public  ConfigFileReader() {
+		
+		
 		BufferedReader reader ;
 		try {
 			reader = new BufferedReader (new FileReader (propertyFilePath));
@@ -30,6 +34,16 @@ public class ConfigFileReader {
 			e.printStackTrace();
 			throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
 		}		
+		
+	}
+	
+	
+	public static ConfigFileReader getConfigFileReader() {
+		
+		if (configFileReader == null) {
+			configFileReader = new ConfigFileReader();
+		}
+		return configFileReader;
 		
 	}
 	

@@ -40,7 +40,7 @@ public class BasePage {
 	
 	
 	public boolean isElementDisplayed(By locator) throws InterruptedException {
-		Thread.sleep(1000);
+		
 		return driver.findElement(locator).isDisplayed();
 		
 	}
@@ -49,7 +49,7 @@ public class BasePage {
 		return driver.findElement(locator).getText();
 	}
 	
-	  public void getSelectedVisibleText(By locator , String text) {
+	  public void selectTextfromDropdownList(By locator , String text) {
 	  WebElement element =  driver.findElement(locator);
 	  Select select = new Select(element);
 	  select.selectByVisibleText(text);
@@ -82,17 +82,18 @@ public class BasePage {
 			  
 		}
 		
-		public void waitTimeForVisibilityOfElement(By path , int timeout) {
+		public void waitForElementToAppear(By path , int timeout) {
 			wait = new WebDriverWait(driver, timeout);
 		     wait.until(ExpectedConditions.visibilityOfElementLocated(path));
 		
 	} 
 		
-		public  void waitTimeForClickableElement(By path , int timeout) {
+		public  void WaitForElementToClick(By path , int timeout) {
 			wait = new WebDriverWait(driver, timeout);
 		     wait.until(ExpectedConditions.elementToBeClickable(path));
 		
 	}
+	
 
 	
 	  

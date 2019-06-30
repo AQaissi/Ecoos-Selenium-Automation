@@ -1,4 +1,4 @@
-package com.test.page;
+package com.test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -21,14 +21,15 @@ import Pages.LoginPage;
 public class BaseTest {
 	
 	public WebDriver driver ; 
-	public ConfigFileReader configfilereader; 
+ 
 	public LoginPage loginPage ;
 	public String username , password; 
 	
+	public ConfigFileReader configfilereader = ConfigFileReader.getConfigFileReader();
 	
 	@BeforeSuite
 	public void setup () {
-		configfilereader = new ConfigFileReader();
+		
 		 if (configfilereader.getPropertyFromFile("browsertype").contentEquals("Chrome")) {   
 			 
 				System.setProperty("webdriver.chrome.driver","./src/main/resources/Driver/chromedriver.exe");
@@ -52,8 +53,8 @@ public class BaseTest {
 	}
 	
 	@BeforeTest
-	public void positiveLoginTestCase() throws InterruptedException {
-		configfilereader = new ConfigFileReader() ;
+	public void validLoginTest() throws InterruptedException {
+	
 		username = configfilereader.getPropertyFromFile("username");
 		password = configfilereader.getPropertyFromFile("password");
 	    loginPage = new LoginPage(driver);
