@@ -65,7 +65,7 @@ public class BaseTest {
 	    loginPage.Login(username,password); 
 //	    wait = new WebDriverWait(driver, 20);
 //	    wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(constant.button_logout)));
-	    
+//	    
 	    ExpectedCondition<Boolean> pageLoadCondition = new
 		        ExpectedCondition<Boolean>() {
 		            public Boolean apply(WebDriver driver) {

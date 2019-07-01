@@ -10,36 +10,6 @@ import Constants.constant;
 
 public class HomePage extends BasePage {
 	
-//	//Locators for Site DropDown Menu
-//	By siteDropDownList = By.xpath("//li/div");
-//	By siteDropDownButton = By.xpath("/html/body/section/section/header/div/div[1]/a[1]");
-//	By selectButton = By.xpath("//div[@class='modal-footer']/button[@ng-click='vm.submit()']");
-//	public static String optionSite = "Adama Demo";
-//	public static By resultSite = By.xpath("/html/body/section/section/header/div/div[1]/a[1]/p[1]");
-//	
-//	//Locators for Protocol DropDown Menu
-//	By protocolDropDownList = By.xpath("//div[2]/div/select");
-//	public static String optionProtocol = "Israel Pollutant Release and Transfer Register (PRTR)";
-//	public static String allProtocols = "All Protocols";
-//
-//	
-//	//Locators for Search Assets
-//	public By selectAsset = By.xpath("//div/div[@class='select-assets']/button");
-//	public By assetTypes = By.xpath("");
-//	
-//	//Locators for category
-//	public static String category = "//div[@class='collect-category ";
-//	public static String categoryResult = "//div[@class='assets-sidebar__title']/span[@class='name ";
-//	
-//	//Locators for tabs
-//	public static String tabOnDashboard = "//div[@class='navigation-section flex-row flex-grow-1']/ul/li/a[@ui-sref='dashboard.";
-//	
-//	// Locators for wait
-//	public static By adminProfile = By.xpath("//div/div/a[@ui-sref='setup.assets']");
-//	public By menu = By.xpath("//div/div[@class='popup ng-scope']");
-
-	 
- 	
 	public HomePage(WebDriver driver) {
 		this.driver = driver ; 
 		

@@ -90,34 +90,34 @@ public class BasePage {
 		
 	} 
 		
-//		public  boolean  WaitForElementToClick(By path , int timeout) {
-//			wait = new WebDriverWait(driver, timeout);
-//			boolean isPresent = false;
-//	 if(    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(path)) != null) {
-//			 isPresent  = driver.findElement(path).isDisplayed(); 
-//			  System.out.println("Element is clickable " + isPresent);
-//			  return isPresent ;
-//		 }else {
-//			 
-//			  System.out.println("Element is not clickable ");
-//
-//		 }
-//		return isPresent; 
-//		 
-//	}
+		public  boolean  WaitForElementToClick(By path , int timeout) {
+			wait = new WebDriverWait(driver, timeout);
+			boolean isPresent = false;
+	 if(    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(path)) != null) {
+			 isPresent  = driver.findElement(path).isDisplayed(); 
+			  System.out.println("Element is clickable " + isPresent);
+			  return isPresent ;
+		 }else {
+			 
+			  System.out.println("Element is not clickable ");
+
+		 }
+		return isPresent; 
+		 
+	}
 		
-		public void WaitForElementToClick(By path , int timeout) {
-		    ExpectedCondition<Boolean> pageLoadCondition = new
-		        ExpectedCondition<Boolean>() {
-		            public Boolean apply(WebDriver driver) {
-		            	System.out.println("Script "+((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete"));
-		                return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-		            }
-		        };
-		    wait = new WebDriverWait(driver, 10);
-		    wait.until(pageLoadCondition);
-		}
-	
+//		public void WaitForElementToClick(By path , int timeout) {
+//		    ExpectedCondition<Boolean> pageLoadCondition = new
+//		        ExpectedCondition<Boolean>() {
+//		            public Boolean apply(WebDriver driver) {
+//		            	System.out.println("Script "+((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete"));
+//		                return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+//		            }
+//		        };
+//		    wait = new WebDriverWait(driver, 10);
+//		    wait.until(pageLoadCondition);
+//		}
+//	
 
 	
 	  
