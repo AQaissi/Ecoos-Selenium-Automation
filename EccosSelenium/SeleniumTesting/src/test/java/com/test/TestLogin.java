@@ -46,7 +46,6 @@ public class TestLogin extends BaseTest {
 		Assert.assertEquals(errorMessage, constant.text_expectedMessage);
 	}
 	
-	  
 	@DataProvider(name="LoginProvider") 
     public Object[][] getDataFromDataprovider(){
     return new Object[][] 

@@ -45,17 +45,18 @@ public class HomePage extends BasePage {
 		
 	}
 	
-	public void selectSiteFromDropDownList() throws InterruptedException {
+	public void selectSiteFromDropDownList(String siteName) throws InterruptedException {
 		WaitForElementToClick(constant.button_adminProfile, 20);
 		 clickElement(constant.button_site);
+		 waitForElementToAppear(constant.menu, 20);
 		 
-		try {
-			waitForElementToAppear(constant.menu, 20);
+		 try{
+			
 		 List<WebElement> options = getListOfElement(constant.dropdownList_site);
 		
 		for (WebElement option : options)
 		{
-		     if (option.getText().equals(constant.text_optionSite))
+		     if (option.getText().equals(siteName))
 		    {
 		        option.click();
 		        waitForElementToAppear(constant.menu, 20);
@@ -73,9 +74,8 @@ public class HomePage extends BasePage {
 		try {
 			
 			selectTextfromDropdownList(constant.dropDownList_protocol ,protocolName);
-//			waitTimeForClickableElement(adminProfile , 20); 
-			
-			Thread.sleep(2000);
+			WaitForElementToClick(constant.button_adminProfile, 10); 
+//			Thread.sleep(2000);
 			 
 		}catch(Exception e) {
 			System.out.println("Exception in selectProtocolItem method");
@@ -101,7 +101,6 @@ public class HomePage extends BasePage {
 			return "Exception in selectedSiteOptionText method";
 		}
 	}
-	
 	public By setXpathOfDashboard(String dashboard) {
 		return By.xpath("//div[@class='navigation-section flex-row flex-grow-1']/ul/li/a[@ui-sref='dashboard."+dashboard+"']");
 	}
@@ -121,6 +120,12 @@ public class HomePage extends BasePage {
 		return getElementText(getCetegoryResultPath(categoryName));
 		
 	} 
+	
+	public void selectTabFromDashboard(String tabName) {
+		clickElement(getDynamicPath(constant.tabOnDashboard, tabName));
+		WaitForElementToClick(constant.button_adminProfile, 20);
+		
+	}
 	
 	
 	

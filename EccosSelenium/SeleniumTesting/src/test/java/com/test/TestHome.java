@@ -2,12 +2,15 @@ package com.test;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Constants.constant;
 import Pages.HomePage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+
+import java.util.concurrent.TimeUnit;
 
 import org.hamcrest.text.IsEqualIgnoringCase;
 import org.openqa.selenium.By;
@@ -21,20 +24,21 @@ public class TestHome extends BaseTest {
 	HomePage homePage;
 	
 	@Test
-	public void selectProtocolFromDropDownListTest() throws InterruptedException {
+	@Parameters({"protocolOption"})
+	public void selectProtocolFromDropDownListTest(String protocolOption) throws InterruptedException {
 		homePage  = new HomePage(driver);
-		homePage.selectProtocolItem(constant.text_optionProtocol) ;
+		homePage.selectProtocolItem(protocolOption) ;
 		String actualOptionText = homePage.getSelectedProtocolText();
-		Assert.assertEquals(actualOptionText, constant.text_optionProtocol);
+		Assert.assertEquals(actualOptionText, protocolOption);
 		
 	} 
 	
 	@Test
-	public void selectSiteFromMenuTest() throws InterruptedException {
+	@Parameters({"siteOption"})
+	public void selectSiteFromMenuTest(String siteOption) throws InterruptedException {
 		homePage  = new HomePage(driver);
-		homePage.selectSiteFromDropDownList();
-		
-		Assert.assertEquals(homePage.getElementText(constant.resultSite), constant.text_optionSite);
+		homePage.selectSiteFromDropDownList(siteOption);
+		Assert.assertEquals(homePage.getElementText(constant.resultSite), siteOption);
 	}
 	
 	@Test(dataProvider = "CategoriesProvider" , dataProviderClass = TabsAndCategoriesData.class)
@@ -49,19 +53,18 @@ public class TestHome extends BaseTest {
 	@Test(dataProvider="TabsProvider" , dataProviderClass=TabsAndCategoriesData.class)
 	public void clickOnTabTest(String tab) throws InterruptedException {
 		homePage = new HomePage(driver);
-		homePage.clickElement(homePage.getDynamicPath(constant.tabOnDashboard, tab));	
+		homePage.selectTabFromDashboard(tab);	
 		String actualUrl = driver.getCurrentUrl();	
 		Assert.assertTrue(actualUrl.contains(tab));
 		
 	}
 	
-	@AfterMethod
+//	@AfterMethod
 	public void navigateBackToHomePage() throws InterruptedException {
 		homePage = new HomePage(driver);
 		driver.get("http://213.6.2.241/dashboard/collect"); 
 		homePage.WaitForElementToClick(constant.button_adminProfile,20); 
-		Thread.sleep(2000);
-		 
+//		Thread.sleep(2000);
 		  
 	} 
 } 

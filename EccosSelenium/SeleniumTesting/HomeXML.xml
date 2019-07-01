@@ -1,21 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">	
 
-<suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="true">
+
+<suite name="BubbleSuite" preserve-order="true">
+ 
+
+<parameter name="protocolOption" value="ILPRTR Particulate emissions from stockpiles" />
+<parameter name="siteOption" value="Adama Demo"/>
    <test name="Home">
    <classes>
    	<class name="com.test.TestHome">
    		<methods>
-   			<include name="selectProtocolFromDropDownListTest"/>
+   			
    		  <include name="selectSiteFromMenuTest"/>
-   		  <include name="selectCategoryTest"/>
-   		 
+   		
    		</methods>
    	
    	</class>
    
    </classes>
-   
    </test>
-   
- 
 </suite>

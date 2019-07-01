@@ -1,4 +1,4 @@
 url=http://213.6.2.241/login
-browsertype=Chrome
+browsertype=Firefox
 username=admin@ecoos.co
 password=ecoos6

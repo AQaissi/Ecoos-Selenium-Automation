@@ -5,10 +5,12 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor ;
 
 
 
@@ -40,7 +42,7 @@ public class BasePage {
 	
 	
 	public boolean isElementDisplayed(By locator) throws InterruptedException {
-		
+		WaitForElementToClick(locator , 20);
 		return driver.findElement(locator).isDisplayed();
 		
 	}
@@ -88,11 +90,33 @@ public class BasePage {
 		
 	} 
 		
-		public  void WaitForElementToClick(By path , int timeout) {
-			wait = new WebDriverWait(driver, timeout);
-		     wait.until(ExpectedConditions.elementToBeClickable(path));
+//		public  boolean  WaitForElementToClick(By path , int timeout) {
+//			wait = new WebDriverWait(driver, timeout);
+//			boolean isPresent = false;
+//	 if(    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(path)) != null) {
+//			 isPresent  = driver.findElement(path).isDisplayed(); 
+//			  System.out.println("Element is clickable " + isPresent);
+//			  return isPresent ;
+//		 }else {
+//			 
+//			  System.out.println("Element is not clickable ");
+//
+//		 }
+//		return isPresent; 
+//		 
+//	}
 		
-	}
+		public void WaitForElementToClick(By path , int timeout) {
+		    ExpectedCondition<Boolean> pageLoadCondition = new
+		        ExpectedCondition<Boolean>() {
+		            public Boolean apply(WebDriver driver) {
+		            	System.out.println("Script "+((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete"));
+		                return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+		            }
+		        };
+		    wait = new WebDriverWait(driver, 10);
+		    wait.until(pageLoadCondition);
+		}
 	
 
 	

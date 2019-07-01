@@ -23,7 +23,7 @@ public class TabsAndCategoriesData {
     return new Object[][] 
     	{
             {"energy"},
-//            {"water"},
+            {"water"},
 //            {"profile"}
             
         };
