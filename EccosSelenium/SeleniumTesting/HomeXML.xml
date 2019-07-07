@@ -10,11 +10,10 @@
    <classes>
    	<class name="com.test.TestHome">
    		<methods>
-   			
-   		  <include name="selectSiteFromMenuTest"/>
-   		
+   		<include name="selectProtocolFromDropDownListTest"/>
+   		<include name="selectSiteFromMenuTest"/>
+   		<include name="clickOnTabTest"/>
    		</methods>
-   	
    	</class>
    
    </classes>

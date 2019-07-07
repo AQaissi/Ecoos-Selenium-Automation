@@ -13,12 +13,7 @@
   <test name="login">
 	 <classes>
 	   <class name="com.test.TestLogin">
- <methods>
-
- <include name="validLoginTest"/>
-
- 
-      </methods>	
+	
       </class>
        </classes>
        </test>

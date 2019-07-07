@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import Constants.constant;
-
 public class LoginPage extends BasePage {
 
 
@@ -19,17 +17,20 @@ public class LoginPage extends BasePage {
 		this.driver = driver  ;
 		
 	}
-	
-	
-	
 	public void Login(String strUserName , String strPassword) {
-		setElementText(constant.textField_username,strUserName);
-		setElementText(constant.textField_password, strPassword);
-		clickElement(constant.button_login);
+		setElementText(MainConstant.textField_username,strUserName);
+		setElementText(MainConstant.textField_password, strPassword);
+		clickElement(MainConstant.button_login);
 	}
 	
 	public boolean isLogoutVisible() throws InterruptedException {
-		return isElementDisplayed(constant.button_logout);
+		
+		return isElementDisplayed(MainConstant.button_logout);
+		
+	}
+	public void clickLogout(By locator) {
+		waitForElementToBeClickable(MainConstant.button_logout, 20);
+		driver.findElement(locator).click();
 		
 	}
 	

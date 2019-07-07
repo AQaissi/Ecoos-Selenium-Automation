@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -14,13 +15,25 @@ import org.testng.annotations.Test;
 
 import com.beust.jcommander.Parameter;
 
-import Constants.constant;
 import Pages.HomePage;
 import Pages.LoginPage;
+import Pages.MainConstant;
 
 
 
 public class TestLogin extends BaseTest {
+	
+	@BeforeMethod
+	public void navigateToLoginPage() throws InterruptedException {
+		loginPage = new LoginPage(driver); 
+		try {
+		if (loginPage.isLogoutVisible()) {
+			loginPage.clickLogout(MainConstant.button_logout);
+		}}
+		catch(Exception e) {
+			System.out.printf("Exception in navigateToLoginPage method",e.getMessage());
+		}
+	}
 
 	@Test
 	@Parameters({"username","password"})
@@ -28,7 +41,6 @@ public class TestLogin extends BaseTest {
 	
 	    loginPage = new LoginPage(driver);
 	    loginPage.Login(username,password);
-	    By logout = By.xpath("//a/img[@src='/images/icons/support.png']");
 	    Assert.assertTrue(loginPage.isLogoutVisible());
 	    
 	}
@@ -41,9 +53,9 @@ public class TestLogin extends BaseTest {
 	    loginPage = new LoginPage(driver);
 		loginPage.Login(invUserName, invPassword);
 		
-		String errorMessage = loginPage.getElementText(constant.textField_errorMessage);
+		String errorMessage = loginPage.getElementText(MainConstant.textField_errorMessage);
 		
-		Assert.assertEquals(errorMessage, constant.text_expectedMessage);
+		Assert.assertEquals(errorMessage, MainConstant.text_expectedMessage);
 	}
 	
 	@DataProvider(name="LoginProvider") 

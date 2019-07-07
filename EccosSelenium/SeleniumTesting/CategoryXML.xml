@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">	
+
+
+<suite name="BubbleSuite" preserve-order="true">
+ 
+
+   <test name="Category">
+   <classes>
+   	<class name="com.test.TestCategory">
+   		<methods>
+   			<include name="selectCategoryTest"/>
+   		  <include name="selectAssetTest"/>
+   		
+   		</methods>
+   	</class>
+   
+   </classes>
+   </test>
+</suite>

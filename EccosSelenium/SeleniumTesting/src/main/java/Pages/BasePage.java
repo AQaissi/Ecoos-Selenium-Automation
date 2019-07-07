@@ -42,7 +42,7 @@ public class BasePage {
 	
 	
 	public boolean isElementDisplayed(By locator) throws InterruptedException {
-		WaitForElementToClick(locator , 20);
+
 		return driver.findElement(locator).isDisplayed();
 		
 	}
@@ -85,39 +85,53 @@ public class BasePage {
 		}
 		
 		public void waitForElementToAppear(By path , int timeout) {
+			try {
 			wait = new WebDriverWait(driver, timeout);
-		     wait.until(ExpectedConditions.visibilityOfElementLocated(path));
+		     wait.until(ExpectedConditions.visibilityOfElementLocated(path));}
+			catch(Exception e) {
+				System.out.println("Element is not appeared");
+			}
 		
 	} 
 		
-		public  boolean  WaitForElementToClick(By path , int timeout) {
-			wait = new WebDriverWait(driver, timeout);
-			boolean isPresent = false;
-	 if(    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(path)) != null) {
-			 isPresent  = driver.findElement(path).isDisplayed(); 
-			  System.out.println("Element is clickable " + isPresent);
-			  return isPresent ;
-		 }else {
-			 
-			  System.out.println("Element is not clickable ");
+		public void waitForElementToBeClickable(By locator, int timeout) {
+			try {
+				WebDriverWait wait = new WebDriverWait(driver, timeout);
+				wait.until(ExpectedConditions.elementToBeClickable(locator));
 
-		 }
-		return isPresent; 
-		 
-	}
+			} catch (Exception e) {
+				System.out.println("Element is not clickable,");
+			}
+		}
+
+		public void waitWhileElementHasAttributeValue(String locator, String attribute, String value) {
+
+			while (driver.findElement(By.xpath(locator)).getAttribute(attribute).contains(value)) {
+				
+				int timeout = 10;
+				if (timeout > 0) {
+					timeout--;
+					try {
+						System.out.println(attribute + "t" + value);
+						Thread.sleep(500);
+					} catch (Exception e) {
+						System.out.print("Element Not Found");
+						System.out.printf("Exception of wait loader", e.getMessage());
+
+					}
+				}
+			}
+		}
 		
-//		public void WaitForElementToClick(By path , int timeout) {
-//		    ExpectedCondition<Boolean> pageLoadCondition = new
-//		        ExpectedCondition<Boolean>() {
-//		            public Boolean apply(WebDriver driver) {
-//		            	System.out.println("Script "+((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete"));
-//		                return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-//		            }
-//		        };
-//		    wait = new WebDriverWait(driver, 10);
-//		    wait.until(pageLoadCondition);
-//		}
-//	
+		
+		public void clickElementByJavascript(WebElement element) {
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].click();", element);
+
+		}
+		
+		
+		
 
 	
 	  

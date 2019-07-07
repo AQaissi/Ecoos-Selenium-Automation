@@ -12,7 +12,7 @@ public class TabsAndCategoriesData {
             {"collect"},
             {"review"},
             {"analyze"},
-            {"report-protocol"}
+            {"report"}
             
         };
 
@@ -23,7 +23,7 @@ public class TabsAndCategoriesData {
     return new Object[][] 
     	{
             {"energy"},
-            {"water"},
+//            {"water"},
 //            {"profile"}
             
         };

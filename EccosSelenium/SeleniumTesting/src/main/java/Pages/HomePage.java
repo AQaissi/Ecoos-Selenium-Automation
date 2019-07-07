@@ -3,10 +3,9 @@ package Pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import Constants.constant;
 
 public class HomePage extends BasePage {
 	
@@ -16,37 +15,33 @@ public class HomePage extends BasePage {
 	}
 	
 	public void selectSiteFromDropDownList(String siteName) throws InterruptedException {
-		WaitForElementToClick(constant.button_adminProfile, 20);
-		 clickElement(constant.button_site);
-		 waitForElementToAppear(constant.menu, 20);
-		 
-		 try{
-			
-		 List<WebElement> options = getListOfElement(constant.dropdownList_site);
+		waitForElementToAppear(MainConstant.button_adminProfile, 20);
+		WebElement element = driver.findElement(MainConstant.button_site);
+		clickElementByJavascript(element);
+		 List<WebElement> options = getListOfElement(MainConstant.dropdownList_site);
+		 System.out.print("Size of List is :"+options.size());
 		
 		for (WebElement option : options)
 		{
+			
 		     if (option.getText().equals(siteName))
 		    {
-		        option.click();
-		        waitForElementToAppear(constant.menu, 20);
-		        clickElement(constant.button_select);
-		        		        
+		    	 System.out.print("Inside If"+option.getText());
+
+		        clickElementByJavascript(option);
+		        System.out.print("After Click");
+
+		        clickElementByJavascript(driver.findElement(MainConstant.button_select));	        
 		        break;
 		    }
 		}
-		}catch(Exception e ) {
-			System.out.println("clickElementAction"+e.getMessage());
-		}
-		WaitForElementToClick(constant.button_adminProfile, 20);
+
 	}
 	public void selectProtocolItem(String protocolName) {
 		try {
 			
-			selectTextfromDropdownList(constant.dropDownList_protocol ,protocolName);
-			WaitForElementToClick(constant.button_adminProfile, 10); 
-//			Thread.sleep(2000);
-			 
+			selectTextfromDropdownList(MainConstant.dropDownList_protocol ,protocolName);
+			waitForElementToBeClickable(MainConstant.button_adminProfile, 20); 			 
 		}catch(Exception e) {
 			System.out.println("Exception in selectProtocolItem method");
 		}
@@ -55,7 +50,7 @@ public class HomePage extends BasePage {
 	
 	public String getSelectedProtocolText() {
 		try {
-			return getSelectedOptionText(constant.dropDownList_protocol);
+			return getSelectedOptionText(MainConstant.dropDownList_protocol);
 			
 		}catch(Exception e) {
 			return "Exception in selectedProtocolOptionText method";
@@ -64,7 +59,7 @@ public class HomePage extends BasePage {
 	
 	public String getSelectedSiteText() {
 		try {
-			String optionTest =  getSelectedOptionText(constant.dropdownList_site);	
+			String optionTest =  getSelectedOptionText(MainConstant.dropdownList_site);	
 			return optionTest ;
 		}
 		catch(Exception e) {
@@ -75,27 +70,14 @@ public class HomePage extends BasePage {
 		return By.xpath("//div[@class='navigation-section flex-row flex-grow-1']/ul/li/a[@ui-sref='dashboard."+dashboard+"']");
 	}
 	
-	
-	public void selectCategory(String categoryName) {
-		clickElement(getDynamicPath(constant.button_category,  categoryName));
-		waitForElementToAppear(getCetegoryResultPath(categoryName), 20);
-	}
-	
-	public By getCetegoryResultPath(String categoryName) {
-		return getDynamicPath(constant.text_categoryResult, categoryName);
-		 
-	}
-	 
-	public String getCategoryText(String categoryName) {
-		return getElementText(getCetegoryResultPath(categoryName));
-		
-	} 
-	
 	public void selectTabFromDashboard(String tabName) {
-		clickElement(getDynamicPath(constant.tabOnDashboard, tabName));
-		WaitForElementToClick(constant.button_adminProfile, 20);
+		WebElement tab = driver.findElement(getDynamicPath(MainConstant.tabOnDashboard, tabName));
+		clickElementByJavascript(tab);
+		waitForElementToBeClickable(MainConstant.button_adminProfile, 20);
 		
 	}
+	
+
 	
 	
 	

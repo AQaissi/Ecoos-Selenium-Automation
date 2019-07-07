@@ -5,8 +5,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Constants.constant;
 import Pages.HomePage;
+import Pages.MainConstant;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -38,33 +39,26 @@ public class TestHome extends BaseTest {
 	public void selectSiteFromMenuTest(String siteOption) throws InterruptedException {
 		homePage  = new HomePage(driver);
 		homePage.selectSiteFromDropDownList(siteOption);
-		Assert.assertEquals(homePage.getElementText(constant.resultSite), siteOption);
+		homePage.waitForElementToBeClickable(MainConstant.button_adminProfile, 20);
+		Assert.assertEquals(homePage.getElementText(MainConstant.resultSite), siteOption);
 	}
-	
-	@Test(dataProvider = "CategoriesProvider" , dataProviderClass = TabsAndCategoriesData.class)
-	public void selectCategoryTest(String categoryName) throws InterruptedException {
-		homePage  = new HomePage(driver); 
-		homePage.WaitForElementToClick(constant.button_adminProfile, 20);
-		homePage.selectCategory(categoryName) ;
-		  
-		assertThat(homePage.getCategoryText(categoryName), IsEqualIgnoringCase.equalToIgnoringCase(categoryName));
-	} 
 	
 	@Test(dataProvider="TabsProvider" , dataProviderClass=TabsAndCategoriesData.class)
 	public void clickOnTabTest(String tab) throws InterruptedException {
 		homePage = new HomePage(driver);
 		homePage.selectTabFromDashboard(tab);	
 		String actualUrl = driver.getCurrentUrl();	
+		homePage.waitWhileElementHasAttributeValue("//div[contains(@class, 'loading-dial')]","style","block");
+		System.out.printf("Actual URL :"+actualUrl);
 		Assert.assertTrue(actualUrl.contains(tab));
 		
 	}
 	
-//	@AfterMethod
+	@AfterMethod
 	public void navigateBackToHomePage() throws InterruptedException {
 		homePage = new HomePage(driver);
 		driver.get("http://213.6.2.241/dashboard/collect"); 
-		homePage.WaitForElementToClick(constant.button_adminProfile,20); 
-//		Thread.sleep(2000);
-		  
+		homePage.waitForElementToBeClickable(MainConstant.button_adminProfile, 20);
+		Assert.assertTrue(driver.getCurrentUrl().contains("collect"));
 	} 
 } 
